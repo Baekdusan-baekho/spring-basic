@@ -26,7 +26,7 @@ public class RequestController {
 		System.out.println("RequestCon 생성됨!");
 	}
 	
-	@RequestMapping("/test")
+	@RequestMapping("/test") // localhost:9999/basic/request/test 페이지에 도착하면 return한다 text.jsp파일을 찾아서
 	public String testCall() {
 		System.out.println("/request/test 요청이 들어옴!");
 		return "test";
@@ -123,7 +123,7 @@ public class RequestController {
 		System.out.println("hobby: " + hobbies);
 		
 	}
-	*/
+	
 	
 	/*
 	 3. 커맨드 객체를 활용한 파라미터 처리
