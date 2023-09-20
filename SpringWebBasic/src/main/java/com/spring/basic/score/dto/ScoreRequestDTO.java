@@ -14,6 +14,8 @@ import lombok.*;
  
  */
 
+// 점수를 받으면 저장하겠다 선언
+
 @Setter @Getter @ToString
 @NoArgsConstructor
 @AllArgsConstructor

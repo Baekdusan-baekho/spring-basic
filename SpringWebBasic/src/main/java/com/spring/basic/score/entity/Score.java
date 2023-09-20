@@ -25,7 +25,6 @@ import lombok.ToString;
 public class Score {
 	
 	
-	
 	private String stuName;
 	private int kor, eng, math; //국, 영, 수 점수
 	
@@ -37,6 +36,7 @@ public class Score {
 	
 	public Score(ScoreRequestDTO dto) {
 		this.stuName = dto.getName();
+		System.out.println(this.stuName);
 		changeScore(dto);
 		
 	}
@@ -67,6 +67,8 @@ public class Score {
 	        this.total = kor + eng + math;
 	        this.average = total / 3.0;
 	    }
+
+		
 	
 	
 	
