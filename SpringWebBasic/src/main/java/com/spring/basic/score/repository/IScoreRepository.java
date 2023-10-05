@@ -28,12 +28,19 @@ public interface IScoreRepository {
 	
 	
 	
-	
+	//ScoreRepositoryImpl에서 기능 가져오기
 	
 	
 }
 
 
+/*
 
 
+IScoreRepository 
+-> ScoreRepositryImpl
+-> ScoreService
+-> ScoreController
+-> .jsp
 
+*/

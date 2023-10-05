@@ -95,6 +95,7 @@ public class ScoreController {
 		return "score/score-modify";
 	}
 	
+	// 상세보기, 수정화면 공통 로직을 메서드화
 	private void retrieve(int stuNum, Model model) {
 		Score score = service.retrieve(stuNum);
 		model.addAttribute("s", score);
@@ -110,11 +111,22 @@ public class ScoreController {
 		return "redirect:/score/detail?stuNum=" + stuNum;
 	}
 	
-	
+	// 데이터 보내고 받기
 	
 	
 }
 
+
+/*
+
+
+IScoreRepository 
+-> ScoreRepositryImpl
+-> ScoreService
+-> ScoreController
+-> .jsp
+
+*/
 
 
 

@@ -27,6 +27,7 @@ public class ScoreListResponseDTO {
 		this.average = s.getAverage();
 		this.grade = s.getGrade();
 		
+		
 	}
 	
 	// 이름을 첫 글자만 빼고 나머지를 *로 처리하기
@@ -38,6 +39,10 @@ public class ScoreListResponseDTO {
 		}
 		return maskingName;
 	}
+	
+	
+	//계층 간 데이터 전송을 위해 도메인 모델 대신 사용되는 객체
+	// 데이터를 내보냄
 	
 }
 

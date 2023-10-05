@@ -72,6 +72,21 @@ public class ScoreRepositoryImpl implements IScoreRepository {
 	}
 	
 	
-	
+	// 정보를 저장하고 기능을 추가하기
+	//저장소 기능
+
 
 }
+
+
+/*
+
+
+IScoreRepository 
+-> ScoreRepositryImpl
+-> ScoreService
+-> ScoreController
+-> .jsp
+
+*/
+

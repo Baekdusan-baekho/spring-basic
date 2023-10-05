@@ -3,6 +3,8 @@ package com.spring.basic.score.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.spring.basic.score.dto.ScoreListResponseDTO;
@@ -16,10 +18,15 @@ import lombok.RequiredArgsConstructor;
 // 예) 값을 가공한다든지 예외 처리를 한다든지 
 //DTO로 변환처리를 한다는지 트랜잭션을 한다든지 여러 잡일을 한다
 @Service // 빈 등록, 컨트롤러와 다르지 않다
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ScoreService {
 	
 	private final IScoreRepository scoreRepository;
+	
+	@Autowired
+	public ScoreService(@Qualifier("jdbc") IScoreRepository scoreRepository) {
+		this.scoreRepository = scoreRepository;
+	}
 	
 	
 	// 등록의 중간 처리
@@ -43,13 +50,11 @@ public class ScoreService {
 		List<ScoreListResponseDTO> dtoList = new ArrayList<>();
 		List<Score> scoreList = scoreRepository.findAll();
 		for(Score s : scoreList) {
-			ScoreListResponseDTO dto = new ScoreListResponseDTO(s); //Entity를 DTO로 변환
+			ScoreListResponseDTO dto = new ScoreListResponseDTO(s); // Entity를 DTO로 변환
 			dtoList.add(dto); // 변환한 DTO를 DTO List에 추가
 		}
 		
-		return dtoList;
-		
-
+		return dtoList;		
 	}
 
 	// 학생 점수 개별 조회
@@ -78,10 +83,22 @@ public class ScoreService {
 //		scoreRepository.modify(score);
 	}
 	
-	
+	// 기능에 데이터 넣기
 	
 
 }
+
+
+/*
+
+
+IScoreRepository 
+-> ScoreRepositryImpl
+-> ScoreService
+-> ScoreController
+-> .jsp
+
+*/
 
 
 
