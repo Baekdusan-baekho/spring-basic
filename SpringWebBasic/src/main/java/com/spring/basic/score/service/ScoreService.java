@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.spring.basic.score.dto.ScoreListResponseDTO;
 import com.spring.basic.score.dto.ScoreRequestDTO;
 import com.spring.basic.score.entity.Score;
+import com.spring.basic.score.repository.IScoreMapper;
 import com.spring.basic.score.repository.IScoreRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,15 +19,19 @@ import lombok.RequiredArgsConstructor;
 // 예) 값을 가공한다든지 예외 처리를 한다든지 
 //DTO로 변환처리를 한다는지 트랜잭션을 한다든지 여러 잡일을 한다
 @Service // 빈 등록, 컨트롤러와 다르지 않다
-//@RequiredArgsConstructor
+@RequiredArgsConstructor //ScoreREpositoryImlp 을 사용할 때 사용
 public class ScoreService {
 	
-	private final IScoreRepository scoreRepository;
+	private final IScoreMapper scoreRepository;
 	
-	@Autowired
-	public ScoreService(@Qualifier("jdbc") IScoreRepository scoreRepository) {
-		this.scoreRepository = scoreRepository;
-	}
+//	@Autowired
+//	public ScoreService(@Qualifier("jdbc") IScoreRepository scoreRepository) {
+//		this.scoreRepository = scoreRepository;
+//	}
+//	@Autowired
+//	public ScoreService(@Qualifier("spring") IScoreRepository scoreRepository) {
+//		this.scoreRepository = scoreRepository;
+//	}
 	
 	
 	// 등록의 중간 처리
@@ -35,7 +40,7 @@ public class ScoreService {
 	// 내가 Entity를 만들어서 넘겨야겠다.
 	public void insertScore(ScoreRequestDTO dto) {
 		Score score = new Score(dto);
-		// Entity를 완성했으니, Repository에게 전달해서 DB에 넣자.
+		//Entity를 완성했으니, Repository에게 전달해서 DB에 넣자.
 		scoreRepository.save(score);
 	}
 

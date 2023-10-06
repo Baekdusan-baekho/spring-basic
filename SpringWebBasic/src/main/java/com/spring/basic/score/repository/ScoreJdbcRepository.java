@@ -17,6 +17,9 @@ import com.spring.basic.score.entity.Score;
 @Repository("jdbc")
 public class ScoreJdbcRepository implements IScoreRepository {
 	
+	// 저장소 역할을 한다
+	// 이유 없이 404에러가 뜰 경우에는 메이븐 업데이트를 한다. alt f5 를 입력한다.
+	
 	// 데이터베이스 접속 오라클 db 주소
 	// 데이터베이스 접속에 필요한정보들을 변수화. (데이터베이스 주소, 계정명, 비밀번호)
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -145,7 +148,7 @@ public class ScoreJdbcRepository implements IScoreRepository {
 				e.printStackTrace();
 			}
 		}
-
+		// 껏다 켜서 정보를 입력하면 순서가 앞으로 옴 그 뒤로 계속 추가됨 먼저 데이터는 뒤로 밀림
 	}
 
 	@Override
@@ -156,11 +159,11 @@ public class ScoreJdbcRepository implements IScoreRepository {
 
 	@Override
 	public void deleteByStuNum(int stuNum) {
+		String sql = "DELETE FROM score WHERE stu_num ="+ stuNum;
 		try {
-			String sql = "DELETE FROM score WHERE stu_num ="+ stuNum;
 			conn = DriverManager.getConnection(url, username, password);
 			pstmp = conn.prepareStatement(sql);
-			int rn = pstmp.executeUpdate();
+			int result = pstmp.executeUpdate();
 			
 		} catch (Exception e) {	
 			e.printStackTrace();
