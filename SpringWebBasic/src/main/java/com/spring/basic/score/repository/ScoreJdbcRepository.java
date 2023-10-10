@@ -65,7 +65,7 @@ public class ScoreJdbcRepository implements IScoreRepository {
 			//4. 물음표 채움 지금은 없음
 			
 			//5. -> 실행하고자 하는 sql이 SELECT인 경우에는
-			//INSERT, UPDATE, ELETE와는 다른 메서들르 호출합니다.
+			//INSERT, UPDATE, ELETE와는 다른 메서드를 호출합니다.
 			// 메서드의 실행 결과는 SQL의 조회 결과를 들고 있는 객체 Result
 			rs = pstmp.executeQuery();
 			

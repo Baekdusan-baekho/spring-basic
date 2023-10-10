@@ -62,7 +62,8 @@ public class ScoreSpringRepository implements IScoreRepository {
 		template.update(sql, score.getStuName(),
 				score.getKor(), score.getEng(),score.getMath(), 
 				score.getTotal(), score.getAverage(), 
-				String.valueOf(score.getGrade()));// close, 예외처리 알아서 됨
+				String.valueOf(score.getGrade()));// close, 예외처리 알아서 됨 
+				// valueOf: 모든 것을 String 타입으로 형변환한다.
 	}
 
 	@Override

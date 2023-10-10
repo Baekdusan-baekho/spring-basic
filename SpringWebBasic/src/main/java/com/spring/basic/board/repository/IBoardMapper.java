@@ -2,7 +2,7 @@ package com.spring.basic.board.repository;
 
 import java.util.List;
 
-import com.spring.basic.board_entity.Board;
+import com.spring.basic.board.entity.Board;
 
 public interface IBoardMapper {
 	
