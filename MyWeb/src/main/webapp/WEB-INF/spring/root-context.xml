@@ -31,9 +31,9 @@
          <!-- HikariConfig 클래스 내부의 필드값을 초기화 하기 위해 setter 메서드 호출 
              주입하는 값을 보면, Connection 객체에 필요한 요소들인 것을 볼 수 있음. -->
          <property name="driverClassName" value="${ora.driverClassName}" />
-         <property name="jdbcUrl" value="ora.url" />
-         <property name="username" value="ora.username" />
-         <property name="password" value="ora.password" />
+         <property name="jdbcUrl" value="${ora.url}" />
+         <property name="username" value="${ora.username}" />
+         <property name="password" value="${ora.password}" />
      </bean>
      
       <!-- 히카리 데이터소스 빈 등록 (커넥션 풀 정보를 담는 객체 등록) -->
@@ -44,6 +44,7 @@
      <!-- 마이바티스 SQL 동작을 위한 핵심 객체 SqlSessionFactory 클래스 빈 등록 -->
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="dataSource" ref="ds" />
+         <property name="configLocation" value="classpath:/mybatis-config.xml" />
          <property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />     
      </bean>
      
@@ -54,7 +55,8 @@
         이미 xml 파일에는 해당 파일이 어떤 인터페이스를 구현하는 구현체인지는 명시되어 있습니다.
         그 인터페이스가 존재하는 패키지의 경로를 탐색하라는 태그입니다.
      -->
-    <mybatis-spring:scan base-package="com.spring.basic.score.repository"/>
+    <mybatis-spring:scan base-package="com.spring.myweb.freeboard.mapper"/>
+    <!-- 테스트하려고 경로 바꿈 IFreeBoardMapper -->
 	
 	
 	

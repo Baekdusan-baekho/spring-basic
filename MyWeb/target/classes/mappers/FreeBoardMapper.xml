@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.myweb.freeboard.mapper.IFreeBoardMapper">
+<!-- IFreeBoardMapper.java에서 namespace 가져옴 -->
+<!-- 테스트 환경 구축!  -->
+<!-- POM.XML에 MAVEN 라이브러리 추가 -->
+
+	<insert id="regist">
+		INSERT INTO freeboard
+		(bno, title, writer, content)
+		VALUES(freeboard_seq.NEXTVAL, #{title}, #{writer}, #{content})
+	</insert>
+	
+	<select id="getList" resultType="freeboard">
+		SELECT * FROM freeboard
+	</select>
+	
+	<select id="getContent" resultType="freeboard">
+		SELECT * FROM freeboard 
+		WHERE bno = #{bno}
+	</select>
+	
+	<!--  freeBoardMappertest와 ifreeboardmapper 함께 봐야 함 -->
+	
+	<update id="update">
+		UPDATE freeboard SET
+		title = #{title},
+		content = #{content},
+		update_date = sysdate
+		WHERE bno = #{bno}
+	</update>
+	
+	
+	<delete id="delete">
+		DELETE FROM freeboard
+		WHERE bno = #{bno}
+	</delete>
+	
+	
+	
+
+
+</mapper>
