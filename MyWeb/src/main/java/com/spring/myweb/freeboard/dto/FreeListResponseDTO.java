@@ -17,6 +17,7 @@ public class FreeListResponseDTO {
 	private String title;
 	private String writer;
 	private String date;
+	// 컨텐트 없다
 	
 	public FreeListResponseDTO(FreeBoard board) {
 		super();
@@ -28,10 +29,10 @@ public class FreeListResponseDTO {
 	
 	
 
-	private String makePrettierDateString(LocalDateTime regDate) {
+	static String makePrettierDateString(LocalDateTime regDate) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		return dtf.format(regDate);
-	}
+	}// 다른 클래스에서도 사용할 해야 한다. 프리디테일리스폰스dto에서 freedetailresponseDTO
 
 
 

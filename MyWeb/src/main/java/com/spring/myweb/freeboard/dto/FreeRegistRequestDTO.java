@@ -16,10 +16,6 @@ public class FreeRegistRequestDTO {
 	private String title;
 	private String content;
 	private String writer;
-	public String getContent() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
 

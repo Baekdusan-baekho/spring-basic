@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.myweb.freeboard.dto.FreeDetailResponseDTO;
 import com.spring.myweb.freeboard.dto.FreeListResponseDTO;
+import com.spring.myweb.freeboard.dto.FreeModifyResponseDTO;
 import com.spring.myweb.freeboard.dto.FreeRegistRequestDTO;
 import com.spring.myweb.freeboard.entity.FreeBoard;
 import com.spring.myweb.freeboard.mapper.IFreeBoardMapper;
@@ -38,20 +40,23 @@ public class FreeBoardService implements IFreeBoardService {
 	}
 
 	@Override
-	public FreeBoard getContent(int bno) {
-		mapper.getContent(bno);
-		return mapper.getContent(bno);
+	public FreeDetailResponseDTO getContent(int bno) { // FreeDetailResponseDTO새로 만들어서 사용함
+		return new FreeDetailResponseDTO(mapper.getContent(bno)); // freeboardmapper.xml에서 sql 코드가 돌아감
 	}
 
 	@Override
-	public void update(FreeBoard freeBoard) {
-		// TODO Auto-generated method stub
+	public void update(FreeModifyResponseDTO freeBoard) {
+		mapper.update(FreeBoard.builder()
+								.title(freeBoard.getTitle())
+								.content(freeBoard.getContent())
+								.bno(freeBoard.getBno())
+								.build());
 
 	}
 
 	@Override
 	public void delete(int bno) {
-		// TODO Auto-generated method stub
+		mapper.delete(bno);
 
 	}
 
