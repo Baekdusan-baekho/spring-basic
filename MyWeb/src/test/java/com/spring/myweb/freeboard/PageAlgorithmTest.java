@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.spring.myweb.freeboard.dto.page.Page;
 import com.spring.myweb.freeboard.mapper.IFreeBoardMapper;
 
 @ExtendWith(SpringExtension.class)
@@ -16,7 +17,6 @@ public class PageAlgorithmTest {
 	@Autowired
 	private IFreeBoardMapper mapper;
 	
-	
 	@Test
 	@DisplayName("페이지 버튼 알고리즘 테스트")
 	void pageTest() {
@@ -24,7 +24,10 @@ public class PageAlgorithmTest {
 		int cpp = 20; //카운트 퍼 페이지 한 화면에 보여줄 게시물 개수
 		int btnNum = 5;// 버튼 넘버 한 화면에 보여줄 버튼 개수
 		
-		int articleTotalCount = mapper.getTotal();
+		int articleTotalCount = mapper.getTotal(Page.builder()
+				.pageNo(16)
+				.amount(20)
+				.build());
 		System.out.println("총 게시물 수: " + articleTotalCount);
 		
 		//끝 페이지 버튼 구하기
@@ -35,7 +38,7 @@ public class PageAlgorithmTest {
 		int beginPage = endPage - btnNum + 1;
 		System.out.println("시작 페이지 번호: " + beginPage);
 		
-		// 
+		// 이전 버튼   필요한지 유무      다음 버튼   필요한지 유무
 		boolean prev = (beginPage == 1) ? false : true;
 		boolean next = (articleTotalCount <= (endPage * cpp)) ? false : true;
 		
