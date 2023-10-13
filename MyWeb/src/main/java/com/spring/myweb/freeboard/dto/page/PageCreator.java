@@ -31,17 +31,17 @@ public class PageCreator {
 	private void calcDataOfPage() {
 		
 		//끝 페이지 계산
-		this.end = (int) (Math.ceil(page.getPageNo() / (double)BUTTON_NUM) * BUTTON_NUM);
+		this.end = (int) (Math.ceil(page.getPageNo() / (double)BUTTON_NUM) * BUTTON_NUM); // page.java에서 가져옴
 				
 		//시작 페이지 계산
 		this.begin = this.end - BUTTON_NUM + 1;
 				
 		this.prev = begin > 1;
 				
-		this.next = articleTotalCount <= (end * page.getAmount()) ? false : true;
+		this.next = articleTotalCount <= (end * page.getAmount()) ? false : true;  // page.java에서 가져옴
 				
 		if(!this.next) {
-			this.end = (int) Math.ceil(articleTotalCount / (double) page.getAmount());
+			this.end = (int) Math.ceil(articleTotalCount / (double) page.getAmount()); // page.java에서 가져옴
 		}
 	}
 

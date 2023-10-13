@@ -27,5 +27,17 @@ public interface IFreeBoardService {
 		
 	// 삭제
 	void delete(int bno);
+	
+	// dto에서 가져온 것들
+	
+	
+	// FreeBoardController.java 에서 사용하는 것들은 여기서 나감
+	
+	// jsp -> FreeBoardController -> IFreeBoardService.
+	
+	
+	//  FreeBoardService 가 여기 IFreeBoardService를 가져감 implements IFreeBoardService
+	
+	//IFreeBoardService 와 IFreeBoardMapper의 연관성은 사이에 FreeBoardService가 있다 
 
 }

@@ -16,6 +16,8 @@ public class FreeRegistRequestDTO {
 	private String title;
 	private String content;
 	private String writer;
+	
+	// 글 등록할 때 사용
 
 }
 

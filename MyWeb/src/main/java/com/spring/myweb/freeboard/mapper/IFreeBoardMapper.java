@@ -28,7 +28,12 @@ public interface IFreeBoardMapper {
 	
 }
 
+// FreeBOard.java에서 가져온 것들
+
 // FreeBoard.java -> IFreeBoardMapper.java -> mappers에 FreeBoardMapper.xml생성
+
+
+// xml과 관련있음 xml에서 사용하는 것들은 여기서 나감
 
 
 

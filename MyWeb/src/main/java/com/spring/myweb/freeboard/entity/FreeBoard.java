@@ -44,6 +44,9 @@ public class FreeBoard {
 	
 }
 
+// IFreeBoardMapper.java 에서 사용함
+// FreeBoardService.java 에서 사용함
+
 
 
 

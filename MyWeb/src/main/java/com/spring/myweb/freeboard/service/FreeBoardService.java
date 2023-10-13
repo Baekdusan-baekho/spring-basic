@@ -43,7 +43,7 @@ public class FreeBoardService implements IFreeBoardService {
 	
 	@Override
 	public int getTotal(Page page) {
-		return mapper.getTotal(page);
+		return mapper.getTotal(page); // IFreeBoardMapper
 	}
 
 	@Override
@@ -66,5 +66,37 @@ public class FreeBoardService implements IFreeBoardService {
 		mapper.delete(bno);
 
 	}
-
+	
+	// IFreeBoardMapper을 가져와서
+	// IFreeBoardMapper 는 DTO를 사용함
+	// IFreeBoardMapper 는 FreeBoardController와 연관이 있음
+	
+	// IFreeBoardMapper 에서 gettotal 가져옴
+	// IFreeBoardMapper 에서 getlist 가져옴
+	// IFreeBoardMapper 에서 getcontent 가져옴
+	
+	
+	
+	//implements IFreeBoardServic 가져옴 @override
+	// DTO 를 매개변수로 가져옴
+	//  IFreeBoardMapper 에서 생성자 가져옴
+	// page.java에서 생성자 가져옴
+	
+	
+	// IFreeBoardService.java
+	//@Override
+	//public int getTotal(Page page) 매개변수는 DTO 사용함 
+	
+	
+	// IFreeBoardMapper  
+	// mapper.update
+	// FreeBoard.java 생성자 가져옴
+	// page.java 데이터도 가져옴 페이지 수 
+	
+	
+	// 
+	
+	
+	
+	
 }

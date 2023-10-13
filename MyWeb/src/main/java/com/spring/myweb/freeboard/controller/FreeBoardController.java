@@ -24,6 +24,10 @@ public class FreeBoardController {
 
 	private final IFreeBoardService service;
 	
+	//Service(=Model)
+	//서비스는 내부 비즈니스 로직을 처리하기 위한 역할을 합니다. MVC에서 데이터를 가져오는 역할을 하며, DAO또는 Mapper를 통해 데이터베이스에 접근하여 결과값을 받아 옵니다.
+	// IFreeBoardMapper 생성자 + FreeBoardController 에서 데이터 넣고 xml에서 데이터베이스 sql코드 작성
+	
 	// 페이징이 들어간 목록 화면
 	@GetMapping("/freeList")
 	public void freeList(Page page, Model model) {
@@ -87,5 +91,8 @@ public class FreeBoardController {
 		service.delete(bno);
 		return "redirect:/freeboard/freeList";
 	}
+	
+	
+	// jsp 에서 보낸 정보가 여기로 옴
 	
 }

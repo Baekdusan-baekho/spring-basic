@@ -18,5 +18,7 @@ public class FreeModifyResponseDTO {
 	private String title;
 	private String content;
 	
+	// 글 수정할 때 사용
+	
 
 }

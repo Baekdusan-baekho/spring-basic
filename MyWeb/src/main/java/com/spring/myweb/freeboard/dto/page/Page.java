@@ -57,6 +57,11 @@ public class Page {
 	
 }
 
+// FreeBoardController.java 에서 사용함
+// IFreeBoardMapper.java 에서 사용함
+// FreeBoardService.java 에서 사용함
+// IFreeBoardService.java 에서 사용함
+
 
 
 
