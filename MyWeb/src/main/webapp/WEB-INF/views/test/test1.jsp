@@ -126,10 +126,12 @@
             c. PUT - 수정
             d. DELETE - 삭제
             */
-           xhr.open('POST', '/myweb/rest/object');
+           xhr.open('POST', '/myweb/rest/object'); // 비동기 방식
 
             //3. 서버로 전송할 데이터를 제작합니다.
             //제작하는 데이터의 형식은 JSON 형태여야 합니다.
+            // 보내는 정보는 자바 스크립트이고 받는 쪽은 자바언어를 사용해서 서로 못 알아들어서
+            // 서로 말이 통하는 방식으로 변형하여 보내고 받는다
             const data = {
                 'name' : name,
                 'age' : age,
@@ -138,6 +140,7 @@
 
             //JS -> JSON으로 변경: JSON.stringify(arg)
             const sendData = JSON.stringify(data);
+            //JSON.stringif JSON을 문자화한다.
 
             //전송할 데이터의 형태가 어떠한지를 요청 헤더에 지정.
             xhr.setRequestHeader('content-type', 'application/json');
