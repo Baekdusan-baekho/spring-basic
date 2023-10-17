@@ -1,14 +1,22 @@
 package com.spring.myweb.user.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.myweb.user.dto.UserJoinRequestDTO;
+import com.spring.myweb.user.entity.User;
 import com.spring.myweb.user.service.UserService;
+import com.spring.myweb.util.MailSenderService;
 
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/user")
@@ -16,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	private final UserService service;
+	private final MailSenderService mailService;
 	
 	//회원가입 페이지로 이동
 	@GetMapping("/userJoin")
@@ -31,7 +40,7 @@ public class UserController {
     @ = 아노테이션
     */
 	///myweb/user/kim1234 = /myweb/user/account
-	@GetMapping("/{account}") //일단 아무 이름을 넣는다
+	@GetMapping("/id/{account}") //일단 아무 이름을 넣는다 
 	@ResponseBody //클라이언트쪽으로 직접 던지겠구나 추측가능
 	public String idCheck(@PathVariable String account) {
 		System.out.println("클라이언트로부터 전달된 아이디: " + account);
@@ -40,6 +49,43 @@ public class UserController {
 		if(result == 1)return "duplicated";
 		else return "ok";
 	}
+	
+	//이메일 인증
+	@PostMapping("/email")
+	@ResponseBody
+	public String mailCheck(@RequestBody String email) {
+		System.out.println("이메일 인증 요청 들어옴: " + email);
+		mailService.joinEmail(email);
+		// 화면단으로 인증번호를 전달.
+		return mailService.joinEmail(email);
+	}
+	
+	//회원 가입 처리
+		@PostMapping("/join")
+		public String join(UserJoinRequestDTO dto, RedirectAttributes ra) {
+			service.join(dto);
+			/*
+			 redirect 상황에서 model 객체를 사용하면 데이터가 제대로 전달되지 않습니다.
+			 model 객체가 forward 상황에서 사용하는 request의 대체제이기 때문에
+			 redirect를 통해 응답이 나갔다가 재 요청이 들어오는 상황에서는 데이터가 소멸합니다.
+			 (parameter에 노출되어 전달됨)
+			 
+			 redirect 상황에서 일회성으로 데이터를 전송할 때 사용하는 메서드 addFlashAttribute
+			 데이터가 url에 노출되지 않고, 한 번 이용한 후에는 알아서 소멸합니다
+			*/
+			ra.addFlashAttribute("msg", "joinSuccess");
+			return "redirect:/user/userLogin";
+		}
+		
+		//로그인 페이지로 이동 요청
+		@GetMapping("/userLogin")
+		public void login() {}
+		
+		//로그인 요청
+		@PostMapping("/userLogin")
+		public void login(String userId, String userPw, Model model) {
+			service.login(userId, userPw);
+		}
 	
 	
 	
