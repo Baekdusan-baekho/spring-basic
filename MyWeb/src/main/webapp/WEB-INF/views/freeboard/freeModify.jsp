@@ -11,7 +11,7 @@
                             <p>수정하기</p>
                         </div>
                         
-                        <form action="/myweb/freeboard/modify" method="post" name="updateForm"> 
+                        <form action="${pageContext.request.contextPath }/freeboard/modify" method="post" name="updateForm"> 
                             <!-- 폼 네임은 (document.updateFrom) 네임을 달면 요소를 지목할 수 있다 -->
                             <div class="form-group">
                                 <label>번호</label>
@@ -47,7 +47,7 @@
         <script>
             // 목록 이동 처리
             document.getElementById('list-btn').onclick = function(){
-                location.href='/myweb/freeboard/freeList';
+                location.href='${pageContext.request.contextPath }/freeboard/freeList';
             }
 
             // form 태그는 메서드 없이 form 태그의 name으로 요소를 바로 취득할 수 있습니다.
@@ -74,12 +74,12 @@
                 if(confirm('정말 삭제하시겠습니까?')){
                     //confirm 확인 취소가 있는 alert같은 창
 
-                    //$form.attr('action', '/myweb.freeboard')
+                    //$form.attr('action', '${pageContext.request.contextPath }.freeboard')
                     //제이쿼리로 속성 바꾸는 방법
 
                     // $form.setAttribute('method', 'get');
                     // 바닐라로 속성 작성하는 방법
-                    $form.setAttribute('action', '/myweb/freeboard/delete');
+                    $form.setAttribute('action', '${pageContext.request.contextPath }/freeboard/delete');
                     $form.submit();
                 }
             }

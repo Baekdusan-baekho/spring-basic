@@ -1,5 +1,7 @@
 package com.spring.myweb.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,12 @@ import oracle.jdbc.proxy.annotation.Post;
 @RequiredArgsConstructor
 public class UserController {
 	
+	// 연관되고 중요한 것들
+	// MailSenderService
+	// UserService
+	// IUserMapper
+	// UserMapper.xml
+	
 	private final UserService service;
 	private final MailSenderService mailService;
 	
@@ -39,7 +47,7 @@ public class UserController {
     값을 받아옵니다.
     @ = 아노테이션
     */
-	///myweb/user/kim1234 = /myweb/user/account
+	//${pageContext.request.contextPath }/user/kim1234 = ${pageContext.request.contextPath }/user/account
 	@GetMapping("/id/{account}") //일단 아무 이름을 넣는다 
 	@ResponseBody //클라이언트쪽으로 직접 던지겠구나 추측가능
 	public String idCheck(@PathVariable String account) {
@@ -84,8 +92,23 @@ public class UserController {
 		//로그인 요청
 		@PostMapping("/userLogin")
 		public void login(String userId, String userPw, Model model) {
-			service.login(userId, userPw);
+			System.out.println("나는 UserController의 login이다!!!");
+			model.addAttribute("result", service.login(userId, userPw));
 		}
+		
+		//마이페이지 이동 요청
+		@GetMapping("/userMypage")
+		public void userMypage(HttpSession session, Model model) {
+			// 마이페이지는 로그인 한 사람만 이동 가능 -> 세션에 아이디가 있다!
+			String id = (String) session.getAttribute("login");
+			service.getInfo(id);
+			model.addAttribute("userInfo", service.getInfo(id));
+			
+			
+			
+		}
+		
+		
 	
 	
 	

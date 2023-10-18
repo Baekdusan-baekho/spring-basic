@@ -3,6 +3,30 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.myweb.user.mapper.IUserMapper">
+
+	<!-- collection 타입의 변수에 값을 매길 때에는 어떤 객체로 포장해서 넣을지를
+    	새로운 resultMap으로 선언해 주셔야 합니다. 
+    	sql에서 조회하는 컬럼에 대한 모든 정보를 작성해 주셔야 합니다. -->
+	<resultMap type="user" id="userMap"> <!-- 조인할 때 어떤 타입으로 포장해라 -->
+	<!-- 조인 문 만을 위한 엔터티 생성 -->
+		<result property="userName" column="user_name" />
+        <result property="userPhone1" column="user_phone1" />
+        <result property="userPhone2" column="user_phone2" />
+        <result property="userEmail1" column="user_email1" />
+        <result property="userEmail2" column="user_email2" />
+        <result property="addrBasic" column="addr_basic" />
+        <result property="addrDetail" column="addr_detail" />
+        <result property="addrZipNum" column="addr_zip_num" />
+        <collection property="userBoardList" resultMap="list"/><!-- property: 필드명 -->
+	</resultMap>
+	
+	
+	<!-- 위에 있는 collection에 들어갈 객체가 어떤 식으로 포자오딜 지를 명시해 주는 resultMap -->
+	<resultMap type="freeboard" id="list">
+		<id property="bno" column="bno"/>
+		<result property="title" column="title"/>
+		<result property="regDate" column="reg_date"/>
+	</resultMap>
 	
 	<!-- 1번 -->
 	<insert id="join">
@@ -27,9 +51,18 @@
 	</select>
 	
 	<!-- 4번 -->
-	<select id="getInfo" resultType="user">
-		SELECT * FROM users
+	<select id="getInfo" resultMap="userMap">
+		SELECT
+			u.user_name, u.user_phone1, u.user_phone2,
+			u.user_email1, u.user_email2,
+			u.addr_basic, u.addr_detail, u.addr_zip_num,
+			f.bno, f.title, f.reg_date
+		FROM users u
+		LEFT JOIN freeboard f
+		ON u.user_id = f.writer
 		WHERE user_id = #{id}
+		ORDER BY f.bno DESC
+		
 	</select>
 	
 	<!-- 5번 -->

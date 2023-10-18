@@ -10,7 +10,7 @@
                     <div class="titlebox">
                        	 회원가입
                     </div>
-                    <form action="/myweb/user/join" method="post" name="joinForm">
+                    <form action="${pageContext.request.contextPath }/user/join" method="post" name="joinForm">
                         <div class="form-group"><!--사용자클래스선언-->
                             <label for="id">아이디</label>
                             <div class="input-group"><!--input2탭의 input-addon을 가져온다 -->
@@ -130,11 +130,11 @@
             // 아이디 중복확인 비동기 요청 준비
             const xhr = new XMLHttpRequest();
             
-            const url = `/myweb/user/\${userId}`;
+            const url = `${pageContext.request.contextPath }/user/\${userId}`;
             console.log('url: ' + url);
 
             // 서버 요청 정보 설정
-            xhr.open('GET', `/myweb/user/\${userId}`); //const userId 이다
+            xhr.open('GET', `${pageContext.request.contextPath }/user/\${userId}`); //const userId 이다
             xhr.send();
 
             xhr.onload = function(){
@@ -162,7 +162,7 @@
 
            //fetch('url', {요청 관련 정보를 담은 객체(GET방식에서는 따로 전달 안함.)})
            // url에 데이터를 붙여서 보내든, json데이터를 보내든 여러 방법이 있다
-           fetch('/myweb/user/' + userId)
+           fetch('${pageContext.request.contextPath }/user/' + userId)
            //Promise 객체의 상태가 요청 성공일 시 데이터 후속처리 진행.
            .then(res => {
                 //fetch 함수를 통해 비동기 통신이 실행되고,
@@ -186,7 +186,7 @@
            */
 
            // 비동기 요청을 fetch()로 보내고 결과를 확인하기/
-           fetch('/myweb/user/id/' + userId)
+           fetch('${pageContext.request.contextPath }/user/id/' + userId)
            .then(res => res.text()) // 화살표 함수 내의 코드가 한 줄이고, 그것이 return이라면 괄호와 return 생략 가능
            // 요청 완료 후 응답 정보에서 텍스트 데이터가 담긴 Promise 반환.
            .then(data => { // 텍스트 데이터만 담긴 Promise 객체로부터 data를 전달받음.
@@ -209,7 +209,7 @@
         document.getElementById('mail-check-btn').onclick = function() {
             const email = document.getElementById('userEmail1').value + document.getElementById('userEmail2').value;
             console.log('완성된 email: ', email);
-            fetch('/myweb/user/email', {
+            fetch('${pageContext.request.contextPath }/user/email', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'text/plain'

@@ -62,7 +62,7 @@
         //      d. DELETE - 삭제
         //     */
 
-        //     xhr.open('POST', '/myweb/rest/object');
+        //     xhr.open('POST', '${pageContext.request.contextPath }/rest/object');
 
         //     // 3. 서버로 전송할 데이터를 제작합니다.
         //     // 제작하는 데이터의 형식은 JSON 형태여야 합니다.           여기는 자바스크립트 스프링은 자바 다른 언어이다
@@ -126,7 +126,7 @@
             c. PUT - 수정
             d. DELETE - 삭제
             */
-           xhr.open('POST', '/myweb/rest/object'); // 비동기 방식
+           xhr.open('POST', '${pageContext.request.contextPath }/rest/object'); // 비동기 방식
 
             //3. 서버로 전송할 데이터를 제작합니다.
             //제작하는 데이터의 형식은 JSON 형태여야 합니다.
