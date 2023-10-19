@@ -18,7 +18,7 @@ public class UserService {
 	private final BCryptPasswordEncoder encoder;
 
 	public int idCheck(String account) {
-		return mapper.idCheck(account);
+		return mapper.idCheck(account); //IUserMapper 에서 가져옴
 	}
 
 	public void join(UserJoinRequestDTO dto) {
@@ -48,7 +48,7 @@ public class UserService {
 	}
 
 	public String login(String userId, String userPw) {
-		String dbPw = mapper.login(userId);
+		String dbPw = mapper.login(userId); // IUserMapper 에서 가져옴
 		if(dbPw != null) {
 			// 전에는 처음만든 비밀번호로는 로그인이 안되고 암호화된 비밀번호를 입력해야 로그인이 된다
 			// 날것의 비밀번호와 암호화된 비밀번호의 일치 여부를 알려주는 matches()
@@ -62,8 +62,8 @@ public class UserService {
 	}
 
 	public UserInfoResponseDTO getInfo(String id) {
-		User user = mapper.getInfo(id);
-		return UserInfoResponseDTO.toDTO(user);	
+		User user = mapper.getInfo(id); // IUserMapper 에서 가져옴
+		return UserInfoResponseDTO.toDTO(user);	 //UserInfoResponseDTO 의 toDTO 에  user를 보낸다
 	}
 
 	

@@ -58,6 +58,7 @@
     <mybatis-spring:scan base-package="com.spring.myweb.freeboard.mapper"/>
     <mybatis-spring:scan base-package="com.spring.myweb.user.mapper"/>
     <!-- 테스트하려고 경로 바꿈 IFreeBoardMapper -->
+    <mybatis-spring:scan base-package="com.spring.myweb.reply.mapper"/>
 	
 	
 	

@@ -29,7 +29,7 @@ public class UserLoginHandler implements HandlerInterceptor{
 		System.out.println("요청 방식: " + request.getMethod()); //get인지 post인지 알려줌
 		
 		if(request.getMethod().equals("POST")) { // 요청 방식이 POST라면 -> 로그인 요청이었다면.
-			ModelMap map = modelAndView.getModelMap(); //평소보던 모델이다   모델 객체 꺼내기
+			ModelMap map = modelAndView.getModelMap(); //평소보던 모델이다   모델 객체 꺼내기 id
 			String result = (String) map.get("result");
 			
 			if(result != null) {// 로그인 성공

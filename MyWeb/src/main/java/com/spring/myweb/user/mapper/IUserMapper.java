@@ -15,8 +15,11 @@ public interface IUserMapper {
 	String login(String id);
 		
 	//회원 정보 얻어오기
-	User getInfo(String id);
+	User getInfo(String id); 
 		
 	//회원 정보 수정
 	void updateUser(User user);
+	
+	
+	// mapper에 보낼 id 작성하고 매개변수로 값을 집어넣는다.
 }
