@@ -17,6 +17,7 @@ import com.spring.myweb.reply.dto.ReplyListResponseDTO;
 import com.spring.myweb.reply.dto.ReplyRequestDTO;
 import com.spring.myweb.reply.dto.ReplyUpdateRequestDTO;
 import com.spring.myweb.reply.service.IReplyService;
+import com.spring.myweb.reply.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +30,7 @@ public class ReplyController {
 	//jsp파일 html js와 소통 데이터를 주고 받는다.
 	//sql과 소통
 
-	private final IReplyService service;
+	private final IReplyService service; // 타입의 객체를 받는다
 	
 	// 댓글 등록
 	@PostMapping()
@@ -81,6 +82,11 @@ public class ReplyController {
 		return service.delete(rno, replyPw);
 		
 	}
+	
+	
+	
+	
+	//IReplyService 의 생성자를 가져온다 생성자에 매개변수를 넣어준다
 	
 	
 	

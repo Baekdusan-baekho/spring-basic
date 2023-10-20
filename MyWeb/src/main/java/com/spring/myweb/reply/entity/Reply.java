@@ -54,6 +54,7 @@ public class Reply {
 
 }
 
+// sql 테이블에 대응하는 하나의 클래스 
 
 
 

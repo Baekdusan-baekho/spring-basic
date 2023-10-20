@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ReplyService implements IReplyService {
+	// 다형성 
 	
 	private final IReplyMapper mapper;
 	// 에러 났음 빈등록 안되어 있어서 매퍼등록안함 
@@ -103,4 +104,6 @@ public class ReplyService implements IReplyService {
 //IReplyMapper 생성자에 매개변수를 넣고
 // dto에 넣어서 여기 service생성자에 넣거나
 // mapper에 넣는다
+	
+// implements IReplyService 의 인터페이스를 가져온다
 }

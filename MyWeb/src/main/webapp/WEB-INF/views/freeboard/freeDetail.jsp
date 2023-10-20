@@ -236,8 +236,8 @@
                                 <div class='reply-group'>
                                     <strong class='left'>` + replyList[i].replyWriter + `</strong> 
                                     <small class='left'>` + parseTime(replyList[i].date) + `</small>
-                                    <a href='` + replyList[i].replyNo + `' class='right replyDelete'><span class='glyphicon glyphicon-pencil'></span>삭제</a>
-                                    <a href='` + replyList[i].replyNo + `' class='right replyModify'><span class='glyphicon glyphicon-remove'></span>수정</a>
+                                    <a href='` + replyList[i].replyNo + `' class='right replyDelete'><span class='glyphicon glyphicon-remove'></span>삭제</a>
+                                    <a href='` + replyList[i].replyNo + `' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>
                                 </div>
                                 <p class='clearfix'>` + replyList[i].replyText + `</p>
                             </div>

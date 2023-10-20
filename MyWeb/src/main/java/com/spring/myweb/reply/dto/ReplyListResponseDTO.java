@@ -11,6 +11,8 @@ import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
 public class ReplyListResponseDTO {
+	//값을 운반
+	// dto는 entity 생성자 가져온다
 	
 	private int replyNo;
 	private String replyWriter;

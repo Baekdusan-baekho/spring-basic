@@ -37,6 +37,8 @@ public interface IReplyMapper {
 	void update(Reply reply);//댓글 수정
 	void delete(int rno);//댓글 삭제
 
+	// ReplyService 서비스는 mapper로 매개변수를 보낸다
+	// 그럼 여기서 mapper.xml로 매개변수를 보내고 같은 이름을 아이디로 정하고 sql에 물어볼 아이디나 비밀번호 이런 매개변수를 보낸다
 }
 
 

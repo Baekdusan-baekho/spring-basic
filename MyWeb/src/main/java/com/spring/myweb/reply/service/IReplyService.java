@@ -8,6 +8,7 @@ import com.spring.myweb.reply.dto.ReplyUpdateRequestDTO;
 import com.spring.myweb.reply.entity.Reply;
 
 public interface IReplyService {
+	//어떤 방식으로 생성할 것이다 틀 역할
 
 	void replyRegist(ReplyRequestDTO dto);//댓글 등록
 	List<ReplyListResponseDTO> getList(int bno, int pageNum);//목록 요청
