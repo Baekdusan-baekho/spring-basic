@@ -14,7 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReplyRegistDTO {
+public class ReplyRequestDTO {
 	
 	//body: JSON.stringify({
 	//  'bno' : bno,
@@ -29,7 +29,7 @@ public class ReplyRegistDTO {
 	private String replyPw;
 	
 	
-	public Reply toEntity(ReplyRegistDTO dto) {
+	public Reply toEntity(ReplyRequestDTO dto) {
 		return Reply.builder()
 				.bno(dto.getBno())
 				.replyText(dto.getReplyText())

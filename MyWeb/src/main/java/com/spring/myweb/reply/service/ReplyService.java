@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.spring.myweb.freeboard.dto.page.Page;
 import com.spring.myweb.reply.dto.ReplyListResponseDTO;
-import com.spring.myweb.reply.dto.ReplyRegistDTO;
+import com.spring.myweb.reply.dto.ReplyRequestDTO;
+import com.spring.myweb.reply.dto.ReplyUpdateRequestDTO;
 import com.spring.myweb.reply.entity.Reply;
 import com.spring.myweb.reply.mapper.IReplyMapper;
 
@@ -25,7 +26,7 @@ public class ReplyService implements IReplyService {
 	private final BCryptPasswordEncoder encoder;
 
 	@Override
-	public void replyRegist(ReplyRegistDTO dto) {
+	public void replyRegist(ReplyRequestDTO dto) {
 		dto.setReplyPw(encoder.encode(dto.getReplyPw())); //비밀번호 암호화
 		mapper.replyRegist(dto.toEntity(dto));
 	}
@@ -48,7 +49,7 @@ public class ReplyService implements IReplyService {
 //		List<Reply> list = mapper.getList(map); // 2.
 		
 		List<ReplyListResponseDTO> dtoList = new ArrayList<>();
-		for(Reply reply : mapper.getList(map)) {
+		for(Reply reply : mapper.getList(map)) {  // IReplyMapper의 getList를 reply에 넣음 
 			dtoList.add(new ReplyListResponseDTO(reply));
 		}
 		
@@ -58,7 +59,7 @@ public class ReplyService implements IReplyService {
 
 	@Override
 	public int getTotal(int bno) {
-		return mapper.getTotal(bno);
+		return mapper.getTotal(bno);  //IReplyMapper의 getTotal
 	}
 
 	@Override
@@ -68,15 +69,38 @@ public class ReplyService implements IReplyService {
 	}
 
 	@Override
-	public void update(Reply reply) {
-		// TODO Auto-generated method stub
+	public String update(ReplyUpdateRequestDTO dto) {
+		if(encoder.matches(dto.getReplyPw(), mapper.pwCheck(dto.getReplyNo()))) {
+			mapper.update(dto.toEntity(dto));
+			return "updateSuccess";
+		}else {
+			return "pwFail";
+		}
+		
+		
 
 	}
 
 	@Override
-	public void delete(int rno) {
-		// TODO Auto-generated method stub
+	public String delete(int rno, String replyPw) {
+		if(encoder.matches(replyPw, mapper.pwCheck(rno))) {
+			mapper.delete(rno);
+			return "delSuccess";
+		} else {
+			return "pwFail";
+		}
 
 	}
 
+	@Override
+	public String delete(ReplyUpdateRequestDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+//IReplyService 인터페이스 가져옴 
+//IReplyMapper 생성자에 매개변수를 넣고
+// dto에 넣어서 여기 service생성자에 넣거나
+// mapper에 넣는다
 }

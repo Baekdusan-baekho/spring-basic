@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.myweb.snsboard.mapper.ISnsBoardMapper">
+<!-- IFreeBoardMapper.java에서 namespace 가져옴 -->
+<!-- 테스트 환경 구축!  -->
+<!-- POM.XML에 MAVEN 라이브러리 추가 -->
+<!-- root-context 에 mybatis-spring:scan 을 넣어야 빈등록이 된다-->
+
+
+
+	
+
+
+</mapper>

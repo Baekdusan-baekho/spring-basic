@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.myweb.freeboard.dto.page.Page;
-import com.spring.myweb.reply.dto.ReplyRegistDTO;
+import com.spring.myweb.reply.dto.ReplyRequestDTO;
 import com.spring.myweb.reply.entity.Reply;
 
 public interface IReplyMapper {

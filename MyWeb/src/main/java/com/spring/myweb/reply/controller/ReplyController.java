@@ -1,37 +1,41 @@
-package com.spring.myweb.reply;
+package com.spring.myweb.reply.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.myweb.reply.dto.ReplyListResponseDTO;
-import com.spring.myweb.reply.dto.ReplyRegistDTO;
+import com.spring.myweb.reply.dto.ReplyRequestDTO;
+import com.spring.myweb.reply.dto.ReplyUpdateRequestDTO;
 import com.spring.myweb.reply.service.IReplyService;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
-@Controller
+@RestController  // 객체마다 RESPONSEBODY를 붙이지 않아도 되게 한다.
 @RequestMapping("/reply")
 @RequiredArgsConstructor
 public class ReplyController {
+	
+	
+	//jsp파일 html js와 소통 데이터를 주고 받는다.
+	//sql과 소통
 
 	private final IReplyService service;
 	
 	// 댓글 등록
 	@PostMapping()
-	public String replyRegist(@RequestBody ReplyRegistDTO dto) {
+	public String replyRegist(@RequestBody ReplyRequestDTO dto) {
 		System.out.println("댓글 등록 요청 들어옴!" + dto);
-		service.replyRegist(dto);
+		service.replyRegist(dto); //IReplyService의 replyRegist이다 
 		return "regSuccess";
 	}
 	
@@ -52,8 +56,8 @@ public class ReplyController {
 		 */
 		
 		System.out.println("/list/" + bno + "/" + pageNum);
-		List<ReplyListResponseDTO> list = service.getList(bno, pageNum); // 댓글 목록
-		int total = service.getTotal(bno); // 게시글에 달려있는 댓글의 총 개수 위의 것과 함께 전달해야 한다.
+		List<ReplyListResponseDTO> list = service.getList(bno, pageNum); // 댓글 목록        IReplyService의 getList에 bno, pageNum을 넣고 list에 집어넣음
+		int total = service.getTotal(bno); // 게시글에 달려있는 댓글의 총 개수 위의 것과 함께 전달해야 한다.  IReplyService의 gettotal
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
@@ -61,6 +65,24 @@ public class ReplyController {
 		
 		return map;
 	}
+	
+	//댓글 수정 요청
+	@PutMapping("/{rno}")
+	public String update(@PathVariable int rno, @RequestBody ReplyUpdateRequestDTO dto) {
+		dto.setReplyNo(rno);
+		return service.update(dto);
+	}
+	
+	
+	// 댓글 삭제 요청
+	@DeleteMapping("/{rno}")
+	public String delete(@PathVariable int rno, @RequestBody String replyPw) { //@RequestBody 비밀번호가 숨겨져 있다
+		System.out.println("replyPw: " + replyPw);
+		return service.delete(rno, replyPw);
+		
+	}
+	
+	
 	
 	
 	
