@@ -3,6 +3,7 @@ package com.spring.myweb.snsboard.entity;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,10 +34,12 @@ CREATE SEQUENCE snsboard_seq
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SnsBoard {
 	
 	private int bno;
-	private String wirter;
+	// 작성자
+	private String writer;
 	private String uploadPath;
 	private String fileLoca;
 	private String fileName;

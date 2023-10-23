@@ -2,7 +2,10 @@ package com.spring.myweb.snsboard.mapper;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.spring.myweb.freeboard.dto.page.Page;
+import com.spring.myweb.snsboard.dto.SnsModalRequestDTO;
 import com.spring.myweb.snsboard.entity.SnsBoard;
 
 public interface ISnsBoardMapper {
