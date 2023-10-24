@@ -2,21 +2,18 @@ package com.spring.myweb.snsboard.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.myweb.freeboard.dto.page.Page;
 import com.spring.myweb.snsboard.dto.SnsBoardRequestDTO;
 import com.spring.myweb.snsboard.dto.SnsBoardResponseDTO;
-import com.spring.myweb.snsboard.dto.SnsModalRequestDTO;
 import com.spring.myweb.snsboard.entity.SnsBoard;
 import com.spring.myweb.snsboard.mapper.ISnsBoardMapper;
 
@@ -41,7 +38,7 @@ public class SnsBoardService{
         
         
         //폴더가 존재하지 않다면 새롭게 생성해 주시라~
-        File Folder = new File(uploadPath+"/"+fileLoca);
+        File Folder = new File(uploadPath+fileLoca);
         if(!Folder.exists())Folder.mkdirs();
         
         //저장될 파일명을 UUID를 이용한 파일명으로 저장합니다.
@@ -95,10 +92,31 @@ public class SnsBoardService{
 		
 	}
 	
-	public SnsBoardResponseDTO detail(int bno) {
-		System.out.println("서비스에 도착");
+//	public SnsBoardResponseDTO detail(int bno) {
+//		System.out.println("서비스에 도착");
+//		return new SnsBoardResponseDTO(mapper.getDetail(bno));
+//	}
+
+	public SnsBoardResponseDTO getContent(int bno) {
+		// TODO Auto-generated method stub
 		return new SnsBoardResponseDTO(mapper.getDetail(bno));
 	}
+	
+	public void delete(int bno) {
+		mapper.delete(bno);
+	}
+
+	public String searchLike(Map<String, String> params) {
+		if(mapper.searchLike(params) == 0) {
+			mapper.createLike(params);
+			return "like";
+		}else {
+			mapper.deleteLike(params);
+			return "delete";
+		}
+		
+	}
+
 
 
 
