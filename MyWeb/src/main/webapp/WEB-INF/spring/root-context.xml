@@ -60,6 +60,7 @@
     <!-- 테스트하려고 경로 바꿈 IFreeBoardMapper -->
     <mybatis-spring:scan base-package="com.spring.myweb.reply.mapper"/>
     <mybatis-spring:scan base-package="com.spring.myweb.snsboard.mapper"/>
+    <mybatis-spring:scan base-package="com.spring.myweb.rest"/>
 	
 	
 	

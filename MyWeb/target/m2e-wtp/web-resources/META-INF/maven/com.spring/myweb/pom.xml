@@ -248,6 +248,16 @@
             <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
             <version>1.16</version>
         </dependency>
+        
+        
+        <!-- JSON-SIMPLE: 문자열 데이터를 JSON으로 변환해 주는 라이브러리 -->
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+        
 		
 		
 		
